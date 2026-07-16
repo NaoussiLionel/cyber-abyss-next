@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { useGameStore } from '@/stores/gameStore';
+import { GAME_STATES } from '@/types/game';
 
 const STEPS = [
   { key: 'WASD', instruction: 'Use WASD to move' },
@@ -22,7 +23,7 @@ export default function TutorialOverlay() {
     if (currentStep < STEPS.length - 1) {
       setCurrentStep((s) => s + 1);
     } else {
-      setGameState('playing');
+      setGameState(GAME_STATES.PLAYING);
     }
   }, [currentStep, setGameState]);
 
@@ -31,7 +32,7 @@ export default function TutorialOverlay() {
       if (e.key === 'Enter') {
         setHoldProgress((p) => {
           if (p >= 100) {
-            setGameState('playing');
+            setGameState(GAME_STATES.PLAYING);
             return 0;
           }
           return p + 5;
@@ -94,7 +95,7 @@ export default function TutorialOverlay() {
           NEXT
         </button>
         <button
-          onClick={() => setGameState('playing')}
+          onClick={() => setGameState(GAME_STATES.PLAYING)}
           className="px-6 py-2 text-[#ffffff44] text-sm tracking-widest hover:text-[#ffffff88] transition-colors"
         >
           SKIP ALL

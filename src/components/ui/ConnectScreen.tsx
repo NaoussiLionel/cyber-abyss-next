@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useGameStore } from '@/stores/gameStore';
+import { GAME_STATES } from '@/types/game';
 
 export default function ConnectScreen() {
   const {
@@ -25,7 +26,7 @@ export default function ConnectScreen() {
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setGameState('vsMenu');
+      if (e.key === 'Escape') setGameState(GAME_STATES.VS_MENU);
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
@@ -106,7 +107,7 @@ export default function ConnectScreen() {
       </div>
 
       <button
-        onClick={() => setGameState('vsMenu')}
+        onClick={() => setGameState(GAME_STATES.VS_MENU)}
         className="absolute bottom-8 text-[#ffffff44] text-sm tracking-widest hover:text-[#00e5ff] transition-colors"
       >
         &#9664; BACK

@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { useGameStore } from '@/stores/gameStore';
+import { GAME_STATES } from '@/types/game';
 
 const CONTROLS = {
   MOVEMENT: [
@@ -33,7 +34,7 @@ export default function HelpScreen() {
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setGameState('mainMenu');
+      if (e.key === 'Escape') setGameState(GAME_STATES.MENU);
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
@@ -102,7 +103,7 @@ export default function HelpScreen() {
         </div>
 
         <button
-          onClick={() => setGameState('mainMenu')}
+          onClick={() => setGameState(GAME_STATES.MENU)}
           className="w-full py-3 border border-[#00e5ff44] text-[#00e5ff] tracking-[0.2em] text-sm hover:bg-[#00e5ff22] hover:border-[#00e5ff88] transition-all duration-200"
         >
           &#9664; BACK

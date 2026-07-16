@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useGameStore } from '@/stores/gameStore';
+import { GAME_STATES } from '@/types/game';
 
 type GameMode = 'FFA' | '2v2' | '3v1';
 type MapName = 'NEON' | 'GRID' | 'CRUCIBLE' | 'ABYSS';
@@ -40,7 +41,7 @@ export default function Lobby() {
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setGameState('vsMenu');
+      if (e.key === 'Escape') setGameState(GAME_STATES.VS_MENU);
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
@@ -135,7 +136,7 @@ export default function Lobby() {
         {isHost && (
           <button
             disabled={!allReady}
-            onClick={() => setGameState('playing')}
+            onClick={() => setGameState(GAME_STATES.PLAYING)}
             className={`px-8 py-3 border tracking-[0.2em] text-sm transition-all duration-200 ${
               allReady
                 ? 'border-[#00e5ff66] text-[#00e5ff] hover:bg-[#00e5ff22] hover:border-[#00e5ff] hover:shadow-[0_0_20px_#00e5ff22]'
@@ -148,7 +149,7 @@ export default function Lobby() {
       </div>
 
       <button
-        onClick={() => setGameState('vsMenu')}
+        onClick={() => setGameState(GAME_STATES.VS_MENU)}
         className="absolute bottom-6 text-[#ffffff44] text-sm tracking-widest hover:text-[#ff3333] transition-colors"
       >
         LEAVE

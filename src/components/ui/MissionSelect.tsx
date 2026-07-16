@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { useGameStore } from '@/stores/gameStore';
+import { GAME_STATES } from '@/types/game';
 
 const MISSIONS = Array.from({ length: 28 }, (_, i) => ({
   id: i + 1,
@@ -38,10 +39,10 @@ export default function MissionSelect() {
       } else if (e.key === 'Enter') {
         const m = MISSIONS[selectedIndex];
         if (unlockedMissions.includes(m.id)) {
-          setGameState('playing');
+          setGameState(GAME_STATES.PLAYING);
         }
       } else if (e.key === 'Escape') {
-        setGameState('mainMenu');
+        setGameState(GAME_STATES.MENU);
       }
     },
     [selectedIndex, unlockedMissions, setGameState]
@@ -83,7 +84,7 @@ export default function MissionSelect() {
                 key={mission.id}
                 onClick={() => setSelectedIndex(i)}
                 onDoubleClick={() => {
-                  if (state !== 'locked') setGameState('playing');
+                  if (state !== 'locked') setGameState(GAME_STATES.PLAYING);
                 }}
                 disabled={state === 'locked'}
                 className={`
@@ -112,7 +113,7 @@ export default function MissionSelect() {
         </div>
 
         <button
-          onClick={() => setGameState('mainMenu')}
+          onClick={() => setGameState(GAME_STATES.MENU)}
           className="mt-6 text-[#ffffff44] text-sm tracking-widest hover:text-[#00e5ff] transition-colors"
         >
           &#9664; BACK

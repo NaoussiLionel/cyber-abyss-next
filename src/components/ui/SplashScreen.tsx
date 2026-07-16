@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useGameStore } from '@/stores/gameStore';
+import { GAME_STATES } from '@/types/game';
 
 export default function SplashScreen() {
   const [loadingProgress, setLoadingProgress] = useState(0);
@@ -13,7 +14,7 @@ export default function SplashScreen() {
       setLoadingProgress((p) => {
         if (p >= 100) {
           clearInterval(interval);
-          setGameState('mainMenu');
+          setGameState(GAME_STATES.MENU);
           return 100;
         }
         return p + 2;
@@ -31,7 +32,7 @@ export default function SplashScreen() {
   }, []);
 
   useEffect(() => {
-    const handleKey = () => setGameState('mainMenu');
+    const handleKey = () => setGameState(GAME_STATES.MENU);
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
   }, [setGameState]);

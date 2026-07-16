@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useGameStore } from '@/stores/gameStore';
+import { GAME_STATES } from '@/types/game';
 
 export default function VictoryScreen() {
   const {
@@ -19,7 +20,7 @@ export default function VictoryScreen() {
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Enter') setGameState('mainMenu');
+      if (e.key === 'Enter') setGameState(GAME_STATES.MENU);
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
@@ -57,7 +58,7 @@ export default function VictoryScreen() {
 
         <div className="flex justify-center">
           <button
-            onClick={() => setGameState('mainMenu')}
+            onClick={() => setGameState(GAME_STATES.MENU)}
             className="px-8 py-3 border border-[#00ff8866] text-[#00ff88] tracking-[0.2em] text-sm hover:bg-[#00ff8822] hover:border-[#00ff88] hover:shadow-[0_0_20px_#00ff8844] transition-all duration-200"
           >
             RETURN TO MENU

@@ -2,13 +2,14 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { useGameStore } from '@/stores/gameStore';
+import { GAME_STATES } from '@/types/game';
 
 const MENU_ITEMS = [
-  { label: 'ARCADE', action: 'missionSelect' as const },
-  { label: 'VS PLAYER', action: 'vsMenu' as const },
-  { label: 'OPTIONS', action: 'options' as const },
-  { label: 'HELP', action: 'help' as const },
-  { label: 'EXIT', action: 'exitConfirm' as const },
+  { label: 'ARCADE', action: GAME_STATES.MISSION_SELECT },
+  { label: 'VS PLAYER', action: GAME_STATES.VS_MENU },
+  { label: 'OPTIONS', action: GAME_STATES.OPTIONS },
+  { label: 'HELP', action: GAME_STATES.HELP },
+  { label: 'EXIT', action: GAME_STATES.EXIT_CONFIRM },
 ];
 
 export default function MainMenu() {

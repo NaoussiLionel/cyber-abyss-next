@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useGameStore } from '@/stores/gameStore';
+import { GAME_STATES } from '@/types/game';
 
 export default function TransitionScreen() {
   const {
@@ -19,7 +20,7 @@ export default function TransitionScreen() {
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Enter') setGameState('missionSelect');
+      if (e.key === 'Enter') setGameState(GAME_STATES.MISSION_SELECT);
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
@@ -49,7 +50,7 @@ export default function TransitionScreen() {
 
         <div className="flex justify-center">
           <button
-            onClick={() => setGameState('missionSelect')}
+            onClick={() => setGameState(GAME_STATES.MISSION_SELECT)}
             className="px-8 py-3 border border-[#00e5ff44] text-[#00e5ff] tracking-[0.2em] text-sm hover:bg-[#00e5ff22] hover:border-[#00e5ff88] transition-all duration-200"
           >
             PROCEED

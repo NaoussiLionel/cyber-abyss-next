@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react';
 import { useGameStore } from '@/stores/gameStore';
+import { GAME_STATES } from '@/types/game';
 
 type CrosshairStyle = 'DOT' | 'CROSS' | 'CIRCLE';
 type GraphicsQuality = 'LOW' | 'MED' | 'HIGH';
@@ -131,7 +132,7 @@ export default function OptionsScreen() {
       </div>
 
       <button
-        onClick={() => setGameState('mainMenu')}
+        onClick={() => setGameState(GAME_STATES.MENU)}
         className="mt-10 px-8 py-3 border border-[#00e5ff44] text-[#00e5ff] tracking-[0.2em] text-sm hover:bg-[#00e5ff22] hover:border-[#00e5ff88] transition-all duration-200"
       >
         BACK

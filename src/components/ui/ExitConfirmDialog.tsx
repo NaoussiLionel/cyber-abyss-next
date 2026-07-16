@@ -2,13 +2,14 @@
 
 import { useEffect } from 'react';
 import { useGameStore } from '@/stores/gameStore';
+import { GAME_STATES } from '@/types/game';
 
 export default function ExitConfirmDialog() {
   const setGameState = useGameStore((s) => s.setGameState);
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setGameState('mainMenu');
+      if (e.key === 'Escape') setGameState(GAME_STATES.MENU);
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
@@ -44,7 +45,7 @@ export default function ExitConfirmDialog() {
             QUIT
           </button>
           <button
-            onClick={() => setGameState('mainMenu')}
+            onClick={() => setGameState(GAME_STATES.MENU)}
             className="flex-1 px-4 py-3 border border-[#00e5ff44] text-[#00e5ff88] tracking-[0.2em] text-sm hover:bg-[#00e5ff11] hover:border-[#00e5ff88] hover:text-[#00e5ff] transition-all duration-200"
           >
             CANCEL

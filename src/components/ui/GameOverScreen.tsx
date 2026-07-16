@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useGameStore } from '@/stores/gameStore';
+import { GAME_STATES } from '@/types/game';
 
 export default function GameOverScreen() {
   const { setGameState } = useGameStore();
@@ -16,7 +17,7 @@ export default function GameOverScreen() {
 
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === 'Enter') setGameState('mainMenu');
+      if (e.key === 'Enter') setGameState(GAME_STATES.MENU);
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
@@ -55,7 +56,7 @@ export default function GameOverScreen() {
       </p>
 
       <button
-        onClick={() => setGameState('mainMenu')}
+        onClick={() => setGameState(GAME_STATES.MENU)}
         className="relative z-10 px-8 py-3 border border-[#ff333366] text-[#ff3333] tracking-[0.2em] text-sm hover:bg-[#ff333322] hover:border-[#ff3333] hover:shadow-[0_0_20px_#ff333344] transition-all duration-200"
       >
         REBOOT SEQUENCE
